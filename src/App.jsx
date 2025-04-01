@@ -13,7 +13,7 @@ import Collections from './pages/Collections';
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/thisnthat">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

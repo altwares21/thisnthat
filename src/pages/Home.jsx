@@ -14,11 +14,20 @@ const Home = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-          
+            <h1 className="text-4xl font-bold text-center text-blue-600">Welcome to thisNThatMixUpShop!</h1>
+            <p className="mt-4 text-lg text-center text-gray-700">
+                Your one-stop shop for all things unique and stylish. Explore our collections of apparel, accessories, and more!
+            </p>
+            <div className="mt-8">
+                <a href="/collections" className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+                    Shop Now
+                </a>
+            </div>
+
             {/* Apparel Section */}
             <section className="mt-16 w-full px-4">
                 <h2 className="text-2xl font-bold text-center text-orange-500">Featured Apparel</h2>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-2">
                     {selectedApparelProducts.map(product => (
                         <div key={product.id} className="relative group">
                             <Link to={`/product/${product.id}`}>
@@ -42,7 +51,7 @@ const Home = () => {
             {/* Figures Section */}
             <section className="mt-16 w-full px-4">
                 <h2 className="text-2xl font-bold text-center text-blue-500">Featured Figures</h2>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-2">
                     {selectedFigureProducts.map(product => (
                         <div key={product.id} className="relative group">
                             <Link to={`/product/${product.id}`}>
@@ -66,7 +75,7 @@ const Home = () => {
             {/* Accessories Section */}
             <section className="mt-16 w-full px-4">
                 <h2 className="text-2xl font-bold text-center text-green-500">Featured Accessories</h2>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-2">
                     {selectedAccessoriesProducts.map(product => (
                         <div key={product.id} className="relative group">
                             <Link to={`/product/${product.id}`}>
