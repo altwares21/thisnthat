@@ -10,8 +10,6 @@ const Cart = () => {
                 <h2 className="text-xl font-semibold">Items in your cart:</h2>
                 {/* Example item */}
                 <div className="flex justify-between items-center border-b py-2">
-                    <span>Item Name</span>
-                    <span>$Price</span>
                 </div>
                 {/* More items can be added here */}
             </div>

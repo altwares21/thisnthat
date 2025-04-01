@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import products from '../assets/products';
+import ProductGrid from '../components/ProductGrid';
 
 const Figures = () => {
-    return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">Figures</h1>
-            <p className="text-lg">Explore our collection of figures that bring your favorite characters to life!</p>
-            {/* Add more content related to figures here */}
-        </div>
-    );
+    // State to simulate loading
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Simulate a loading delay
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 750); // Simulate 750ms of loading
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Filter products for "Figures" category
+    const figureProducts = products.filter((product) => product.category === 'Figures');
+
+    return <ProductGrid products={figureProducts} isLoading={isLoading} title="Figures" />;
 };
 
 export default Figures;
