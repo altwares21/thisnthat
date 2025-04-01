@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
+    const { cartItems } = useContext(CartContext);
+
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
-            <p className="mb-4">Here you can review the items you have added to your cart.</p>
-            {/* Cart items will be displayed here */}
-            <div className="border-t mt-4 pt-4">
-                <h2 className="text-xl font-semibold">Items in your cart:</h2>
-                {/* Example item */}
-                <div className="flex justify-between items-center border-b py-2">
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
+            {cartItems.length === 0 ? (
+                <p className="text-gray-600">Your cart is empty.</p>
+            ) : (
+                <div className="space-y-4">
+                    {cartItems.map((item, index) => (
+                        <div
+                            key={index}
+                            className="flex items-center justify-between border-b pb-4"
+                        >
+                            <img
+                                src={item.image}
+                                alt={item.name}
+                                className="w-16 h-16 object-cover rounded"
+                            />
+                            <div className="flex-1 ml-4">
+                                <h2 className="text-lg font-bold">{item.name}</h2>
+                                {item.size && (
+                                    <p className="text-gray-600">Size: {item.size}</p>
+                                )}
+                                <p className="text-gray-600">Quantity: {item.quantity}</p>
+                                <p className="text-orange-500 font-bold">
+                                    ${item.price.toFixed(2)}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                {/* More items can be added here */}
-            </div>
-            <div className="mt-4">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded">Proceed to Checkout</button>
-            </div>
+            )}
         </div>
     );
 };

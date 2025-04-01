@@ -1,5 +1,9 @@
 import React from 'react'; // Required for JSX syntax
+import { Provider } from 'react-redux'; // Redux Provider
+import store from './store'; // Redux store
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // For routing
+import { ToastContainer } from 'react-toastify'; // Toast notifications
+import 'react-toastify/dist/ReactToastify.css'; // Toastify styles
 import HeaderNavbar from './components/HeaderNavbar'; // Header component
 import Footer from './components/Footer'; // Footer component
 import Home from './pages/Home'; // Home page
@@ -11,34 +15,40 @@ import Cart from './pages/Cart'; // Cart page
 import Checkout from './pages/Checkout'; // Checkout page
 import Collections from './pages/Collections'; // Collections page
 import Product from './pages/Product'; // Import the Product page
+import { CartProvider } from './context/CartContext'; // Import CartProvider
 
 const App = () => {
   return (
-    <Router basename="/thisnthat">
-      <div className="flex flex-col min-h-screen">
-        {/* Header */}
-        <HeaderNavbar />
+    <Provider store={store}>
+      <CartProvider>
+        <Router basename="/thisnthat">
+          <div className="flex flex-col min-h-screen">
+            {/* Header */}
+            <HeaderNavbar />
 
-        {/* Main Content */}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/apparel" element={<Apparel />} />
-            <Route path="/accessories" element={<Accessories />} />
-            <Route path="/figures" element={<Figures />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/collections" element={<Collections />} />
-            <Route path="/product/:id" element={<Product />} />
-          </Routes>
-        </main>
+            {/* Main Content */}
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/apparel" element={<Apparel />} />
+                <Route path="/accessories" element={<Accessories />} />
+                <Route path="/figures" element={<Figures />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/collections" element={<Collections />} />
+                <Route path="/product/:id" element={<Product />} />
+              </Routes>
+            </main>
 
-        {/* Footer */}
-        <Footer />
-      </div>
-    </Router>
+            {/* Footer */}
+            <Footer />
+          </div>
+          <ToastContainer position="top-right" autoClose={2000} />
+        </Router>
+      </CartProvider>
+    </Provider>
   );
 };
 

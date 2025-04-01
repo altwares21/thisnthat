@@ -46,7 +46,7 @@ const Home = () => {
                         {/* Apparel Section */}
                         <Link to="/apparel" className="relative group">
                             <div className="relative w-40 h-40 mx-auto">
-                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
                                     <span className="text-white text-lg font-bold">Apparel</span>
                                 </div>
                                 <img
@@ -60,7 +60,7 @@ const Home = () => {
                         {/* Accessories Section */}
                         <Link to="/accessories" className="relative group">
                             <div className="relative w-40 h-40 mx-auto">
-                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
                                     <span className="text-white text-lg font-bold">Accessories</span>
                                 </div>
                                 <img
@@ -74,7 +74,7 @@ const Home = () => {
                         {/* Figures Section */}
                         <Link to="/figures" className="relative group">
                             <div className="relative w-40 h-40 mx-auto">
-                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
                                     <span className="text-white text-lg font-bold">Figures</span>
                                 </div>
                                 <img

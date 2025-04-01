@@ -1,18 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 import products from '../assets/products'; // Import the products data
+import { CartContext } from '../context/CartContext'; // Import CartContext
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Product = () => {
     const { id } = useParams(); // Get the product ID from the URL
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const [quantity, setQuantity] = useState(1); // State for quantity
     const [selectedSize, setSelectedSize] = useState(''); // State for selected size
+    const { addToCart } = useContext(CartContext); // Access addToCart from CartContext
 
     const product = products.find((product) => product.id === parseInt(id)); // Find the product by ID
 
     useEffect(() => {
+        // Random loading messages
+        const loadingMessages = [
+            'Gathering product information...',
+            'Fetching details for this amazing product...',
+            'Hang tight! Loading product data...'
+        ];
+        const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        toast.info(randomMessage); // Show a random toast message
+
         // Simulate a loading delay
         const timer = setTimeout(() => {
             setIsLoading(false);
@@ -32,11 +45,23 @@ const Product = () => {
         availableSizes = ['XS', 'Small', 'Medium', 'Large', 'XL', '2XL', '3XL', '4XL', '5XL'];
     }
 
-    // Handle quantity adjustment
-    const handleQuantityChange = (type) => {
-        setQuantity((prevQuantity) =>
-            type === 'increment' ? prevQuantity + 1 : Math.max(1, prevQuantity - 1)
-        );
+    const handleAddToCart = () => {
+        if (availableSizes.length > 0 && !selectedSize) {
+            toast.error('Select a size before adding to cart'); // Show error toast if size is not selected
+            return;
+        }
+
+        const cartItem = {
+            id: product.id,
+            name: product.name,
+            image: product.images[0], // Use the first image
+            price: product.price,
+            quantity,
+            size: availableSizes.length > 0 ? selectedSize : null, // Include size if applicable
+        };
+
+        addToCart(cartItem);
+        toast.success('Item added to cart!'); // Show success toast
     };
 
     return (
@@ -57,11 +82,11 @@ const Product = () => {
                         <div className="w-full h-[400px] bg-gray-300 animate-pulse rounded-lg"></div>
                     ) : (
                         <Carousel
-                            showThumbs={product.images.length > 1} // Only show thumbnails if there are multiple images
+                            showThumbs={product.images.length > 1}
                             infiniteLoop={true}
                             showStatus={false}
                             dynamicHeight={false}
-                            thumbWidth={80} // Set thumbnail width
+                            thumbWidth={80}
                             renderThumbs={() =>
                                 product.images.length > 1 &&
                                 product.images.map((image, index) => (
@@ -69,7 +94,7 @@ const Product = () => {
                                         key={index}
                                         src={image}
                                         alt={`Thumbnail ${index + 1}`}
-                                        className="h-[100px] object-cover rounded-lg" // Thumbnail height
+                                        className="h-[100px] object-cover rounded-lg"
                                     />
                                 ))
                             }
@@ -79,7 +104,7 @@ const Product = () => {
                                     <img
                                         src={image}
                                         alt={`${product.name} - ${index + 1}`}
-                                        className="w-full h-[400px] object-contain rounded-lg" // Main image height
+                                        className="w-full h-[400px] object-contain rounded-lg"
                                     />
                                 </div>
                             ))}
@@ -136,31 +161,28 @@ const Product = () => {
                         </div>
                     )}
 
-                    {/* Quantity Input */}
+                    {/* Quantity Dropdown */}
                     <div className="flex items-center mb-4">
                         {isLoading ? (
                             <div className="w-full h-10 bg-gray-300 animate-pulse rounded"></div>
                         ) : (
-                            <>
-                                <button
-                                    onClick={() => handleQuantityChange('decrement')}
-                                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-l-lg focus:outline-none"
-                                >
-                                    -
-                                </button>
-                                <input
-                                    type="text"
+                            <div className="w-full">
+                                <label htmlFor="quantity" className="block text-gray-700 font-bold mb-2">
+                                    Quantity:
+                                </label>
+                                <select
+                                    id="quantity"
                                     value={quantity}
-                                    readOnly
-                                    className="w-12 text-center border-t border-b border-gray-300 focus:outline-none"
-                                />
-                                <button
-                                    onClick={() => handleQuantityChange('increment')}
-                                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-r-lg focus:outline-none"
+                                    onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
                                 >
-                                    +
-                                </button>
-                            </>
+                                    {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                                        <option key={num} value={num}>
+                                            {num}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         )}
                     </div>
 
@@ -168,7 +190,10 @@ const Product = () => {
                     {isLoading ? (
                         <div className="w-full h-10 bg-gray-300 animate-pulse rounded"></div>
                     ) : (
-                        <button className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600">
+                        <button
+                            onClick={handleAddToCart}
+                            className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600"
+                        >
                             Add to Cart
                         </button>
                     )}
