@@ -16,12 +16,15 @@ import Checkout from './pages/Checkout'; // Checkout page
 import Collections from './pages/Collections'; // Collections page
 import Product from './pages/Product'; // Import the Product page
 import { CartProvider } from './context/CartContext'; // Import CartProvider
+import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
+import ScrollToTopButton from './components/ScrollToTopButton'; // Import the ScrollToTopButton component
 
 const App = () => {
   return (
     <Provider store={store}>
       <CartProvider>
         <Router basename="/thisnthat">
+          <ScrollToTop /> {/* Add ScrollToTop here */}
           <div className="flex flex-col min-h-screen">
             {/* Header */}
             <HeaderNavbar />
@@ -30,6 +33,7 @@ const App = () => {
             <main className="flex-grow">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/collections" element={<Collections />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/apparel" element={<Apparel />} />
@@ -37,7 +41,6 @@ const App = () => {
                 <Route path="/figures" element={<Figures />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/collections" element={<Collections />} />
                 <Route path="/product/:id" element={<Product />} />
               </Routes>
             </main>
@@ -45,6 +48,7 @@ const App = () => {
             {/* Footer */}
             <Footer />
           </div>
+          <ScrollToTopButton /> {/* Add the Scroll to Top button */}
           <ToastContainer position="top-right" autoClose={2000} />
         </Router>
       </CartProvider>

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ProductGrid = ({ products, isLoading, title }) => {
     // State to manage the number of products displayed
-    const [visibleCount, setVisibleCount] = useState(6);
+    const [visibleCount, setVisibleCount] = useState(6); // Default to showing 6 products
 
     // Function to load more products
     const handleLoadMore = () => {
-        setVisibleCount((prevCount) => prevCount + 6);
+        setVisibleCount((prevCount) => prevCount + 6); // Increment by 6
     };
 
     return (

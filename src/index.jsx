@@ -1,17 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'; // Import Provider from react-redux
-import { createStore } from 'redux'; // Import createStore to create the Redux store
-import rootReducer from './reducers'; // Import your root reducer
+import ReactDOM from 'react-dom/client'; // Import createRoot from react-dom/client
+import { Provider } from 'react-redux';
+import store from './store';
 import App from './App';
 import './styles/tailwind.css';
 
-// Create the Redux store
-const store = createStore(rootReducer);
-
-ReactDOM.render(
+const AppWrapper = () => (
     <Provider store={store}>
         <App />
-    </Provider>,
-    document.getElementById('root')
+    </Provider>
 );
+
+// Use createRoot instead of ReactDOM.render
+const root = ReactDOM.createRoot(document.getElementById('root')); // Create a root
+root.render(<AppWrapper />); // Render the app

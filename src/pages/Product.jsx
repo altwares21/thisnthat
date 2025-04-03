@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 import products from '../assets/products'; // Import the products data
-import { CartContext } from '../context/CartContext'; // Import CartContext
+import { useCart } from 'react-use-cart'; // Import useCart from react-use-cart
 import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Product = () => {
     const { id } = useParams(); // Get the product ID from the URL
+    const { addItem } = useCart(); // Access addItem from react-use-cart
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const [quantity, setQuantity] = useState(1); // State for quantity
     const [selectedSize, setSelectedSize] = useState(''); // State for selected size
-    const { addToCart } = useContext(CartContext); // Access addToCart from CartContext
 
     const product = products.find((product) => product.id === parseInt(id)); // Find the product by ID
 
@@ -21,7 +21,7 @@ const Product = () => {
         const loadingMessages = [
             'Gathering product information...',
             'Fetching details for this amazing product...',
-            'Hang tight! Loading product data...'
+            'Hang tight! Loading product data...',
         ];
         const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
         toast.info(randomMessage); // Show a random toast message
@@ -51,16 +51,17 @@ const Product = () => {
             return;
         }
 
-        const cartItem = {
-            id: product.id,
-            name: product.name,
-            image: product.images[0], // Use the first image
-            price: product.price,
-            quantity,
-            size: availableSizes.length > 0 ? selectedSize : null, // Include size if applicable
-        };
+        addItem(
+            {
+                id: `${product.id}-${selectedSize || 'default'}`, // Unique ID based on product ID and size
+                name: product.name,
+                price: product.price,
+                image: product.images[0], // Use the first image
+                size: availableSizes.length > 0 ? selectedSize : null, // Include size if applicable
+            },
+            quantity // Pass the selected quantity explicitly
+        );
 
-        addToCart(cartItem);
         toast.success('Item added to cart!'); // Show success toast
     };
 
