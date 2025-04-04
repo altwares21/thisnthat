@@ -23,15 +23,16 @@ const cartSlice = createSlice({
         updateQuantity: (state, action) => {
             const item = state.find((item) => item.id === action.payload.id);
             if (item) {
-                item.quantity = action.payload.quantity;
+                item.quantity = action.payload.quantity; // Update the quantity
             }
         },
         clearCart: () => {
-            // Clear the entire cart
-            return [];
+            return []; // Clear the cart
         },
     },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions; // Export actions
-export default cartSlice.reducer; // Export the reducer
+// Export actions
+export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
+
+export default cartSlice.reducer;

@@ -3,7 +3,7 @@ const products = [
     {
         id: 1,
         name: "Monkey D. Luffy Tee",
-        price: 35.0,
+        price: 35.00,
         description: "A One Piece t-shirt featuring Monkey D. Luffy.",
         images: [
             require("./products/Apparel/luffy-tee.jpg"),
@@ -751,7 +751,7 @@ const products = [
         images: [
             require("./products/Mugs/aot-mug.jpg")
         ],
-        keywords: ["AOT", "Mikasa", "Eren", "Mug"],
+        keywords: ["AOT", "Mikasa", "Eren", "Mug", "Attack on Titan"],
         category: "Mugs"
     },
     {

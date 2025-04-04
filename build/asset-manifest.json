@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/thisnthat/static/css/main.9e8ace66.css",
-    "main.js": "/thisnthat/static/js/main.4e46a70d.js",
+    "main.css": "/thisnthat/static/css/main.2425f488.css",
+    "main.js": "/thisnthat/static/js/main.0322db9b.js",
     "static/media/logo.png": "/thisnthat/static/media/logo.65f331e78f3c13bd4900.png",
     "static/media/luffy-funko2.jpg": "/thisnthat/static/media/luffy-funko2.736d3bf78656336de3d7.jpg",
     "static/media/myLifeStory-tee.jpg": "/thisnthat/static/media/myLifeStory-tee.8e771b79abe2094441d9.jpg",
+    "static/media/sprites.png": "/thisnthat/static/media/sprites.64a232bca1edbf2e0098.png",
     "static/media/neko-ramen-tee.jpg": "/thisnthat/static/media/neko-ramen-tee.904864d41c0beaa98312.jpg",
     "static/media/goku-tee2.jpg": "/thisnthat/static/media/goku-tee2.dc71c9a7fa58a4d54f61.jpg",
     "static/media/tengen-funko2.jpg": "/thisnthat/static/media/tengen-funko2.426623c94c6dcf001366.jpg",
@@ -131,11 +132,11 @@
     "static/media/death-note-mug.jpg": "/thisnthat/static/media/death-note-mug.25f257a22e22abb0dd8a.jpg",
     "static/media/brook-tee3.jpg": "/thisnthat/static/media/brook-tee3.55f04fd70bbe7def349f.jpg",
     "index.html": "/thisnthat/index.html",
-    "main.9e8ace66.css.map": "/thisnthat/static/css/main.9e8ace66.css.map",
-    "main.4e46a70d.js.map": "/thisnthat/static/js/main.4e46a70d.js.map"
+    "main.2425f488.css.map": "/thisnthat/static/css/main.2425f488.css.map",
+    "main.0322db9b.js.map": "/thisnthat/static/js/main.0322db9b.js.map"
   },
   "entrypoints": [
-    "static/css/main.9e8ace66.css",
-    "static/js/main.4e46a70d.js"
+    "static/css/main.2425f488.css",
+    "static/js/main.0322db9b.js"
   ]
 }

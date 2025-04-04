@@ -1,17 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import logo from '../assets/images/logo.png';
-import { FaShoppingCart, FaSearch } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import SearchBar from './SearchBar';
+import CartIcon from './CartIcon'; // Import the new CartIcon component
+import sprites from '../assets/images/sprites.png'; // Import the sprites image
 
 const HeaderNavbar = () => {
-    const [menuOpen, setMenuOpen] = useState(false); // State to toggle the hamburger menu
-    const [showSearchBar, setShowSearchBar] = useState(false); // State to toggle the search bar visibility
-    const cartItems = useSelector((state) => state.cart);
-    const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [showSearchBar, setShowSearchBar] = useState(false);
     const menuRef = useRef(null);
-    const searchBarRef = useRef(null); // Ref for the search bar
+    const searchBarRef = useRef(null);
 
     // Close the hamburger menu when clicking outside of it
     useEffect(() => {
@@ -43,7 +42,7 @@ const HeaderNavbar = () => {
 
     // Handle search submission
     const handleSearchSubmit = () => {
-        setShowSearchBar(false); // Close the search bar after submitting
+        setShowSearchBar(false);
     };
 
     return (
@@ -84,13 +83,8 @@ const HeaderNavbar = () => {
                             <Link to="/accessories" className="hover:underline">Accessories</Link>
                             <Link to="/figures" className="hover:underline">Figures</Link>
                             <Link to="/about-us" className="hover:underline">About Us</Link>
-                            <Link to="/cart" className="relative flex items-center hover:underline">
-                                <FaShoppingCart className="text-xl" />
-                                {cartCount > 0 && (
-                                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                                        {cartCount}
-                                    </span>
-                                )}
+                            <Link to="/cart" className="hover:underline">
+                                <CartIcon /> {/* Use the new CartIcon component */}
                             </Link>
                         </nav>
 
@@ -105,10 +99,10 @@ const HeaderNavbar = () => {
             {/* Search Bar for Small Screens */}
             {showSearchBar && (
                 <div
-                    ref={searchBarRef} // Attach the ref to detect clicks outside
+                    ref={searchBarRef}
                     className="sm:hidden bg-orange-500 py-2 px-4"
                 >
-                    <SearchBar onSearch={handleSearchSubmit} /> {/* Pass the onSearch handler */}
+                    <SearchBar onSearch={handleSearchSubmit} />
                 </div>
             )}
 
@@ -116,7 +110,7 @@ const HeaderNavbar = () => {
             {menuOpen && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 z-40"
-                    onClick={() => setMenuOpen(false)} // Close menu when clicking on the background
+                    onClick={() => setMenuOpen(false)}
                 ></div>
             )}
 
@@ -130,12 +124,13 @@ const HeaderNavbar = () => {
                 {/* Close Icon */}
                 <button
                     className="text-white text-2xl absolute top-4 left-4 focus:outline-none"
-                    onClick={() => setMenuOpen(false)} // Close the menu
+                    onClick={() => setMenuOpen(false)}
                 >
                     ✖
                 </button>
 
-                <nav className="flex flex-col items-center space-y-4 py-4 mt-8">
+                {/* Navigation Links */}
+                <nav className="flex flex-col items-center space-y-4 py-4 mt-16">
                     <Link to="/" className="hover:underline" onClick={() => setMenuOpen(false)}>
                         Home
                     </Link>
@@ -151,14 +146,10 @@ const HeaderNavbar = () => {
                     <Link to="/about-us" className="hover:underline" onClick={() => setMenuOpen(false)}>
                         About Us
                     </Link>
-                    <Link to="/cart" className="relative flex items-center hover:underline" onClick={() => setMenuOpen(false)}>
-                        <FaShoppingCart className="text-xl" />
-                        {cartCount > 0 && (
-                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                                {cartCount}
-                            </span>
-                        )}
+                    <Link to="/cart" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                        <CartIcon /> {/* Use the new CartIcon component */}
                     </Link>
+                    <img src={sprites} alt="ThatNThat Sprites" className="h-24 mt-4 " />
                 </nav>
             </div>
         </>

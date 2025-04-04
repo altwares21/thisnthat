@@ -1,54 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { useCart } from 'react-use-cart';
-import { Link } from 'react-router-dom';
-import SectionLinks from '../components/SectionLinks'; // Import the reusable SectionLinks component
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, updateQuantity } from "../slices/cartSlice";
+import SectionLinks from "../components/SectionLinks"; // Import the reusable SectionLinks component
+
 
 const Cart = () => {
-    const {
-        items,
-        updateItemQuantity,
-        removeItem,
-        emptyCart,
-        cartTotal,
-    } = useCart();
+    const cart = useSelector((state) => state.cart); // Access the cart state
+    const dispatch = useDispatch();
 
-    const [isLoading, setIsLoading] = useState(true); // Loading state
+    const handleRemove = (id) => {
+        dispatch(removeFromCart({ id })); // Dispatch the removeFromCart action
+    };
 
-    useEffect(() => {
-        // Simulate a loading delay
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 750); // Simulate 750ms of loading
-        return () => clearTimeout(timer);
-    }, []);
+    const handleQuantityChange = (id, quantity) => {
+        if (quantity > 0) {
+            dispatch(updateQuantity({ id, quantity })); // Dispatch the updateQuantity action
+        }
+    };
 
-    if (isLoading) {
-        // Skeleton loader while loading
+    // Calculate the total price of all items in the cart
+    const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    if (cart.length === 0) {
         return (
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
-                <div className="space-y-6">
-                    {Array.from({ length: 3 }).map((_, index) => (
-                        <div
-                            key={index}
-                            className="flex items-center bg-gray-200 shadow-md rounded-lg p-4 animate-pulse"
-                        >
-                            {/* Skeleton for Product Image */}
-                            <div className="w-32 h-32 bg-gray-300 rounded-lg mr-4"></div>
-
-                            {/* Skeleton for Product Details */}
-                            <div className="flex-1 space-y-4">
-                                <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-                                <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-                                <div className="h-4 bg-gray-300 rounded w-1/4"></div>
-                                <div className="flex space-x-4 mt-4">
-                                    <div className="h-8 w-8 bg-gray-300 rounded"></div>
-                                    <div className="h-8 w-8 bg-gray-300 rounded"></div>
-                                    <div className="h-8 w-8 bg-gray-300 rounded"></div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+            <div className="text-center mt-12">
+                <h1 className="text-3xl font-bold mb-4">Your cart is empty</h1>
+                <p className="text-gray-600 mb-6">
+                    Why not explore our collections and add something to your cart?
+                </p>
+                <div className="flex justify-center space-x-4">
+                    <SectionLinks />
                 </div>
             </div>
         );
@@ -56,52 +37,35 @@ const Cart = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
+            {/* Cart Total for Small Screens */}
+            <div className="block lg:hidden text-center mb-6">
+                <h2 className="text-xl font-bold">Cart Total: ${cartTotal.toFixed(2)}</h2>
+            </div>
+
             <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
-            {items.length === 0 ? (
-                <>
-                    <p className="text-gray-600 text-center mb-6">
-                        Your cart is empty. Why don't you fill it up with something?
-                    </p>
-                    {/* Use the reusable SectionLinks component */}
-                    <SectionLinks />
-                </>
-            ) : (
-                <div className="space-y-6">
-                    {items.map((item) => (
-                        <div
-                            key={`${item.id}-${item.size || 'default'}`} // Include size in the key
-                            className="flex items-center bg-white shadow-md rounded-lg p-4"
-                        >
-                            {/* Product Image (Link to Product Info Page) */}
-                            <Link to={`/product/${item.id}`} className="w-32 h-32 mr-4">
-                                <img
-                                    src={item.image}
-                                    alt={item.name}
-                                    className="w-full h-full object-cover rounded-lg"
-                                />
-                            </Link>
 
-                            {/* Product Details */}
-                            <div className="flex-1 text-left">
-                                {/* Product Title (Link to Product Info Page) */}
-                                <Link to={`/product/${item.id}`}>
-                                    <h2 className="text-lg font-bold text-black hover:underline">
-                                        {item.name}
-                                    </h2>
-                                </Link>
-                                {item.size && (
-                                    <p className="text-sm text-gray-600">Size: {item.size}</p>
-                                )}
+            <div className="flex flex-col lg:flex-row lg:space-x-8">
+                {/* Cart Items */}
+                <div className="flex-1 space-y-6">
+                    {cart.map((item) => (
+                        <div key={item.id} className="flex items-center bg-white shadow-md rounded-lg p-4">
+                            <img
+                                src={item.image}
+                                alt={item.name}
+                                className="w-32 h-32 object-cover rounded-lg mr-4"
+                            />
+                            <div className="flex-1">
+                                <h2 className="text-lg font-bold">{item.name}</h2>
+                                {item.size && <p className="text-sm text-gray-600">Size: {item.size}</p>}
                                 <p className="text-sm text-gray-600">Price: ${item.price.toFixed(2)}</p>
-
-                                {/* Quantity Controls */}
                                 <div className="mt-4 flex items-center space-x-4">
-                                    {/* Decrement Button */}
+                                    {/* Decrease Quantity Button */}
                                     <button
                                         onClick={() =>
-                                            updateItemQuantity(item.id, Math.max(1, item.quantity - 1)) // Use item.id directly
+                                            handleQuantityChange(item.id, item.quantity - 1)
                                         }
                                         className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-400"
+                                        disabled={item.quantity <= 1} // Disable if quantity is 1
                                     >
                                         -
                                     </button>
@@ -109,47 +73,35 @@ const Cart = () => {
                                     {/* Display Quantity */}
                                     <span className="text-lg font-bold">{item.quantity}</span>
 
-                                    {/* Increment Button */}
+                                    {/* Increase Quantity Button */}
                                     <button
                                         onClick={() =>
-                                            updateItemQuantity(item.id, item.quantity + 1) // Use item.id directly
+                                            handleQuantityChange(item.id, item.quantity + 1)
                                         }
                                         className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-400"
                                     >
                                         +
                                     </button>
-                                </div>
 
-                                {/* Remove Button */}
-                                <button
-                                    onClick={() => removeItem(item.id)} // Use item.id directly
-                                    className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-                                >
-                                    Remove
-                                </button>
+                                    {/* Remove Button */}
+                                    <button
+                                        onClick={() => handleRemove(item.id)}
+                                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}
-
-                    {/* Cart Total */}
-                    <div className="flex justify-between items-center bg-white shadow-md rounded-lg p-4">
-                        <h2 className="text-xl font-bold">Total:</h2>
-                        <p className="text-xl font-bold text-orange-500">
-                            ${cartTotal.toFixed(2)}
-                        </p>
-                    </div>
-
-                    {/* Clear Cart Button */}
-                    <div className="text-center">
-                        <button
-                            onClick={emptyCart}
-                            className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600"
-                        >
-                            Clear Cart
-                        </button>
-                    </div>
                 </div>
-            )}
+
+                {/* Cart Total for Large Screens */}
+                <div className="hidden lg:block bg-white shadow-md rounded-lg p-6 w-64">
+                    <h2 className="text-xl font-bold mb-4">Cart Total</h2>
+                    <p className="text-lg font-bold">${cartTotal.toFixed(2)}</p>
+                </div>
+            </div>
         </div>
     );
 };

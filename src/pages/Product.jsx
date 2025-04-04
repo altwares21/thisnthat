@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
 import products from '../assets/products'; // Import the products data
-import { useCart } from 'react-use-cart'; // Import useCart from react-use-cart
+import { useDispatch } from 'react-redux'; // Import useDispatch from react-redux
+import { addToCart } from '../slices/cartSlice'; // Import the addToCart action
 import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Product = () => {
     const { id } = useParams(); // Get the product ID from the URL
-    const { addItem } = useCart(); // Access addItem from react-use-cart
+    const dispatch = useDispatch(); // Initialize the Redux dispatch function
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const [quantity, setQuantity] = useState(1); // State for quantity
     const [selectedSize, setSelectedSize] = useState(''); // State for selected size
@@ -51,15 +52,16 @@ const Product = () => {
             return;
         }
 
-        addItem(
-            {
+        // Dispatch the addToCart action to update the Redux store
+        dispatch(
+            addToCart({
                 id: `${product.id}-${selectedSize || 'default'}`, // Unique ID based on product ID and size
                 name: product.name,
                 price: product.price,
                 image: product.images[0], // Use the first image
                 size: availableSizes.length > 0 ? selectedSize : null, // Include size if applicable
-            },
-            quantity // Pass the selected quantity explicitly
+                quantity, // Pass the selected quantity
+            })
         );
 
         toast.success('Item added to cart!'); // Show success toast
