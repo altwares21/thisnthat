@@ -628,7 +628,7 @@ const products = [
         id: 54,
         name: "Goku Black Keychain",
         price: 18.00,
-        description: "A keychain of Chopper's hat",
+        description: "A keychain of Goku Black from the Dragon Ball series.",
         images: [
             require("./products/Keychains/goku-black-keychain.jpg")
         ],
@@ -1026,6 +1026,136 @@ const products = [
         ],
         keywords: ["Thousand Sunny", "One Piece", "Necklace"],
         category: "Necklaces"
+    },
+    {
+        id: 93,
+        name: "J-Hope Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of J-Hope.",
+        images: [
+            require("./products/Figures/jhope-funko.jpg"),
+            require("./products/Figures/jhope-funko2.jpg"),
+            require("./products/Figures/jhope-funko3.jpg")
+        ],
+        keywords: ["J-Hope", "BTS", "Funko Pop", "J Hope"],
+        category: "Figures"
+    },
+    {
+        id: 94,
+        name: "Susamaru Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Susamaru from Demon Slayer.",
+        images: [
+            require("./products/Figures/susamaru-funko.jpg"),
+            require("./products/Figures/susamaru-funko2.jpg"),
+            require("./products/Figures/susamaru-funko3.jpg")
+        ],
+        keywords: ["Susamaru", "Demon Slayer", "Funko Pop"],
+        category: "Figures"
+    },
+    {
+        id: 95,
+        name: "Kuriboh Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Kuriboh from Yu-Gi-Oh.",
+        images: [
+            require("./products/Figures/kuriboh-funko.jpg"),
+            require("./products/Figures/kuriboh-funko2.jpg"),
+            require("./products/Figures/kuriboh-funko3.jpg")
+        ],
+        keywords: ["Kuriboh", "Yu-Gi-Oh", "Funko Pop", "Yu Gi Oh"],
+        category: "Figures"
+    },
+    {
+        id: 96,
+        name: "Hisoka Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Hisoka from Hunter x Hunter.",
+        images: [
+            require("./products/Figures/hisoka-funko.jpg"),
+            require("./products/Figures/hisoka-funko2.jpg"),
+            require("./products/Figures/hisoka-funko3.jpg")
+        ],
+        keywords: ["Kuriboh", "Yu-Gi-Oh", "Funko Pop", "Yu Gi Oh"],
+        category: "Figures"
+    },
+    {
+        id: 97,
+        name: "Lisa Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Lisa from Blackpink.",
+        images: [
+            require("./products/Figures/lisa-blackpink-funko.jpg"),
+            require("./products/Figures/lisa-blackpink-funko2.jpg"),
+            require("./products/Figures/lisa-blackpink-funko3.jpg")
+        ],
+        keywords: ["Lisa", "Blackpink", "Funko Pop"],
+        category: "Figures"
+    },
+    {
+        id: 98,
+        name: "Spike Spiegel Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Spike Spiegel from Cowboy Bebop.",
+        images: [
+            require("./products/Figures/spike-spiegel-funko.jpg"),
+            require("./products/Figures/spike-spiegel-funko2.jpg"),
+            require("./products/Figures/spike-spiegel-funko3.jpg")
+        ],
+        keywords: ["Spike Spiegel", "Cowboy Bebop", "Funko Pop", "Spike", "Space Cowboy"],
+        category: "Figures"
+    },
+    {
+        id: 99,
+        name: "Sasuke Uchiha Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Sasuke Uchiha from Naruto.",
+        images: [
+            require("./products/Figures/sasuke-funko.jpg"),
+            require("./products/Figures/sasuke-funko2.jpg"),
+            require("./products/Figures/sasuke-funko3.jpg")
+        ],
+        keywords: ["Sasuke Uchiha", "Naruto", "Funko Pop", "Sasuke", "Uchiha"],
+        category: "Figures"
+    },
+    {
+        id: 100,
+        name: "Roronoa Zoro Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Roronoa Zoro from One Piece.",
+        images: [
+            require("./products/Figures/zoro-funko.jpg"),
+            require("./products/Figures/zoro-funko2.jpg"),
+            require("./products/Figures/zoro-funko3.jpg")
+        ],
+        keywords: ["Roronoa Zoro", "One Piece", "Funko Pop", "Zoro"],
+        category: "Figures"
+    },
+    {
+        id: 101,
+        name: "Fire Lord Ozai Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Fire Lord Ozai from Avatar.",
+        images: [
+            require("./products/Figures/ozai-funko.jpg"),
+            require("./products/Figures/ozai-funko2.jpg"),
+            require("./products/Figures/ozai-funko3.jpg")
+        ],
+        keywords: ["Fire Lord Ozai", "Avatar", "Funko Pop"],
+        category: "Figures"
+    },
+    {
+        id: 102,
+        name: "Mikasa Ackerman Funko Pop",
+        price: 50.00,
+        description: "A Funko Pop figure of Mikasa Ackerman from Attack on Titan.",
+        images: [
+            require("./products/Figures/mikasa-funko.jpg"),
+            require("./products/Figures/mikasa-funko2.jpg"),
+            require("./products/Figures/mikasa-funko3.jpg")
+        ],
+        keywords: ["Mikasa Ackerman", "Attack on Titan", "Funko Pop", "Mikasa"],
+        category: "Figures"
     },
 ];
 

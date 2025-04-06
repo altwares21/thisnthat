@@ -45,67 +45,20 @@ const HeaderNavbar = () => {
         setShowSearchBar(false);
     };
 
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+
+        return () => {
+            document.body.classList.remove('no-scroll'); // Cleanup on unmount
+        };
+    }, [menuOpen]);
+
     return (
         <>
-            <header className="bg-orange-500 text-white sticky top-0 z-50">
-                <div className="container mx-auto flex items-center justify-between py-2 px-6 sm:justify-between">
-                    {/* Hamburger Menu Button (Small Screens) */}
-                    <button
-                        className="sm:hidden text-white text-2xl focus:outline-none"
-                        onClick={() => setMenuOpen(!menuOpen)}
-                    >
-                        ☰
-                    </button>
-
-                    {/* Logo (Centered on Small Screens) */}
-                    <Link to="/" className="flex items-center mx-auto sm:mx-0">
-                        <img src={logo} alt="This N That Mix Up Shop Logo" className="h-12" />
-                    </Link>
-
-                    {/* Search Icon (Small Screens) */}
-                    <div className="sm:hidden flex items-center">
-                        {!showSearchBar && (
-                            <button
-                                className="text-white text-xl focus:outline-none"
-                                onClick={() => setShowSearchBar(true)}
-                            >
-                                <FaSearch />
-                            </button>
-                        )}
-                    </div>
-
-                    {/* Navbar for Larger Screens */}
-                    <div className="hidden sm:flex items-center justify-between flex-grow">
-                        {/* Centered Links */}
-                        <nav className="flex items-center justify-center space-x-6 flex-grow">
-                            <Link to="/" className="hover:underline">Home</Link>
-                            <Link to="/apparel" className="hover:underline">Apparel</Link>
-                            <Link to="/accessories" className="hover:underline">Accessories</Link>
-                            <Link to="/figures" className="hover:underline">Figures</Link>
-                            <Link to="/about-us" className="hover:underline">About Us</Link>
-                            <Link to="/cart" className="hover:underline">
-                                <CartIcon /> {/* Use the new CartIcon component */}
-                            </Link>
-                        </nav>
-
-                        {/* Search Bar on the Right (Large Screens) */}
-                        <div className="flex items-center">
-                            <SearchBar />
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {/* Search Bar for Small Screens */}
-            {showSearchBar && (
-                <div
-                    ref={searchBarRef}
-                    className="sm:hidden bg-orange-500 py-2 px-4"
-                >
-                    <SearchBar onSearch={handleSearchSubmit} />
-                </div>
-            )}
-
             {/* Darkened Background */}
             {menuOpen && (
                 <div
@@ -114,43 +67,137 @@ const HeaderNavbar = () => {
                 ></div>
             )}
 
+            {/* Header and Main Content */}
+            <div className={`${menuOpen ? 'opacity-50 pointer-events-none' : ''}`}>
+                <header className="bg-orange-500 text-white sticky top-0 z-50">
+                    <div className="container mx-auto flex items-center justify-between py-2 px-6 sm:justify-between">
+                        {/* Hamburger Menu Button (Small Screens) */}
+                        <button
+                            className="sm:hidden text-white text-2xl focus:outline-none"
+                            onClick={() => setMenuOpen(!menuOpen)}
+                        >
+                            ☰
+                        </button>
+
+                        {/* Logo and Sprites (Large Screens) */}
+                        <Link to="/" className="flex items-center mx-auto sm:mx-0 space-x-4">
+                            <img src={logo} alt="This N That Mix Up Shop Logo" className="h-12" />
+                            <img src={sprites} alt="ThatNThat Sprites" className="h-12 hidden sm:block" />
+                        </Link>
+
+                        {/* Search Icon and Cart Link (Small Screens) */}
+                        <div className="sm:hidden flex items-center space-x-4">
+                            <Link to="/cart" className="text-white text-xl focus:outline-none">
+                                <CartIcon /> {/* Use the CartIcon component */}
+                            </Link>
+                            {!showSearchBar && (
+                                <button
+                                    className="text-white text-xl focus:outline-none"
+                                    onClick={() => setShowSearchBar(true)}
+                                >
+                                    <FaSearch />
+                                </button>
+                            )}
+
+                        </div>
+
+                        {/* Navbar for Larger Screens */}
+                        <div className="hidden sm:flex items-center justify-between flex-grow">
+                            {/* Centered Links */}
+                            <nav className="flex items-center justify-center space-x-6 flex-grow">
+                                <Link to="/" className="hover:underline">Home</Link>
+                                <Link to="/apparel" className="hover:underline">Apparel</Link>
+                                <Link to="/accessories" className="hover:underline">Accessories</Link>
+                                <Link to="/figures" className="hover:underline">Figures</Link>
+                                <Link to="/about-us" className="hover:underline">About Us</Link>
+                                <Link to="/cart" className="hover:underline">
+                                    <CartIcon /> {/* Use the new CartIcon component */}
+                                </Link>
+                            </nav>
+
+                            {/* Search Bar on the Right (Large Screens) */}
+                            <div className="flex items-center">
+                                <SearchBar />
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                {/* Search Bar for Small Screens */}
+                {showSearchBar && (
+                    <div
+                        ref={searchBarRef}
+                        className="sm:hidden bg-orange-500 py-2 px-4"
+                    >
+                        <SearchBar onSearch={handleSearchSubmit} />
+                    </div>
+                )}
+            </div>
+
             {/* Side Hamburger Menu (Small Screens) */}
             <div
                 ref={menuRef}
-                className={`fixed top-0 left-0 h-full w-64 bg-orange-500 text-white z-50 transform ${
-                    menuOpen ? 'translate-x-0' : '-translate-x-full'
-                } transition-transform duration-300`}
+                className={`fixed top-0 left-0 h-full w-64 bg-orange-500 text-white z-50 transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+                    } transition-transform duration-300`}
             >
-                {/* Close Icon */}
-                <button
-                    className="text-white text-2xl absolute top-4 left-4 focus:outline-none"
-                    onClick={() => setMenuOpen(false)}
-                >
-                    ✖
-                </button>
+                {/* Close Button and Logo */}
+                <div className="flex items-center justify-between px-4 py-4 relative">
+                    <button
+                        className="text-white text-2xl focus:outline-none"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        ✖
+                    </button>
+                    <img
+                        src={logo}
+                        alt="This N That Logo"
+                        className="h-16 w-auto absolute left-1/2 transform -translate-x-1/2"
+                    />
+                </div>
 
                 {/* Navigation Links */}
-                <nav className="flex flex-col items-center space-y-4 py-4 mt-16">
-                    <Link to="/" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                <nav className="flex flex-col items-center space-y-6 mt-12 px-4">
+                    <Link
+                        to="/"
+                        className="text-lg font-bold hover:underline"
+                        onClick={() => setMenuOpen(false)}
+                    >
                         Home
                     </Link>
-                    <Link to="/apparel" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                    <Link
+                        to="/apparel"
+                        className="text-lg font-bold hover:underline"
+                        onClick={() => setMenuOpen(false)}
+                    >
                         Apparel
                     </Link>
-                    <Link to="/accessories" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                    <Link
+                        to="/accessories"
+                        className="text-lg font-bold hover:underline"
+                        onClick={() => setMenuOpen(false)}
+                    >
                         Accessories
                     </Link>
-                    <Link to="/figures" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                    <Link
+                        to="/figures"
+                        className="text-lg font-bold hover:underline"
+                        onClick={() => setMenuOpen(false)}
+                    >
                         Figures
                     </Link>
-                    <Link to="/about-us" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                    <Link
+                        to="/about-us"
+                        className="text-lg font-bold hover:underline"
+                        onClick={() => setMenuOpen(false)}
+                    >
                         About Us
                     </Link>
-                    <Link to="/cart" className="hover:underline" onClick={() => setMenuOpen(false)}>
-                        <CartIcon /> {/* Use the new CartIcon component */}
-                    </Link>
-                    <img src={sprites} alt="ThatNThat Sprites" className="h-24 mt-4 " />
                 </nav>
+
+                {/* Sprites Image */}
+                <div className="flex justify-center mt-8">
+                    <img src={sprites} alt="ThatNThat Sprites" className="h-24" />
+                </div>
             </div>
         </>
     );

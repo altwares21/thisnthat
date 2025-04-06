@@ -5,7 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carous
 import products from '../assets/products'; // Import the products data
 import { useDispatch } from 'react-redux'; // Import useDispatch from react-redux
 import { addToCart } from '../slices/cartSlice'; // Import the addToCart action
-import { toast } from 'react-toastify'; // Import toast
+import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Product = () => {
@@ -14,6 +14,8 @@ const Product = () => {
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const [quantity, setQuantity] = useState(1); // State for quantity
     const [selectedSize, setSelectedSize] = useState(''); // State for selected size
+    const [shakeSize, setShakeSize] = useState(false); // State for shake animation
+    const sizeDropdownRef = React.useRef(null); // Ref for size dropdown
 
     const product = products.find((product) => product.id === parseInt(id)); // Find the product by ID
 
@@ -49,6 +51,15 @@ const Product = () => {
     const handleAddToCart = () => {
         if (availableSizes.length > 0 && !selectedSize) {
             toast.error('Select a size before adding to cart'); // Show error toast if size is not selected
+            setShakeSize(true); // Trigger shake animation
+            setTimeout(() => setShakeSize(false), 500); // Remove shake animation after 500ms
+
+            // Temporarily highlight the dropdown
+            if (sizeDropdownRef.current) {
+                sizeDropdownRef.current.classList.add('highlight');
+                setTimeout(() => sizeDropdownRef.current.classList.remove('highlight'), 500); // Remove highlight after 500ms
+            }
+
             return;
         }
 
@@ -69,6 +80,20 @@ const Product = () => {
 
     return (
         <div className="w-full max-w-4xl px-4 mt-12 mx-auto">
+            {/* Toast Container */}
+            <ToastContainer
+                position="top-right" // Change position to top-center for better visibility
+                autoClose={2000} // Auto close after 3 seconds
+                hideProgressBar={false} // Show progress bar
+                newestOnTop={true} // Show newest notifications on top
+                closeOnClick // Close on click
+                rtl={false} // Left-to-right layout
+                pauseOnFocusLoss // Pause when the window loses focus
+                draggable // Allow dragging the notification
+                className="mt-16" // Add margin to prevent overlap with the header
+                pauseOnHover={false} // Disable pause on hover
+            />
+
             {/* Product Name */}
             <h1 className="text-3xl font-bold mb-4 text-center">
                 {isLoading ? (
@@ -151,7 +176,10 @@ const Product = () => {
                                     id="size"
                                     value={selectedSize}
                                     onChange={(e) => setSelectedSize(e.target.value)}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
+                                    ref={sizeDropdownRef}
+                                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 ${
+                                        shakeSize ? 'animate-shake' : ''
+                                    }`}
                                 >
                                     <option value="">Select a size</option>
                                     {availableSizes.map((size) => (

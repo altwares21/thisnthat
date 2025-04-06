@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../slices/cartSlice";
 import SectionLinks from "../components/SectionLinks"; // Import the reusable SectionLinks component
-
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart); // Access the cart state
@@ -49,44 +49,60 @@ const Cart = () => {
                 <div className="flex-1 space-y-6">
                     {cart.map((item) => (
                         <div key={item.id} className="flex items-center bg-white shadow-md rounded-lg p-4">
-                            <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-32 h-32 object-cover rounded-lg mr-4"
-                            />
+                            {/* Product Image as a Link */}
+                            <Link to={`/product/${item.id}`} className="mr-4">
+                                <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    className="w-32 h-32 object-cover rounded-lg"
+                                />
+                            </Link>
+
                             <div className="flex-1">
-                                <h2 className="text-lg font-bold">{item.name}</h2>
+                                {/* Product Name as a Link */}
+                                <Link to={`/product/${item.id}`}>
+                                    <h2 className="text-lg font-bold text-black hover:underline">{item.name}</h2>
+                                </Link>
                                 {item.size && <p className="text-sm text-gray-600">Size: {item.size}</p>}
                                 <p className="text-sm text-gray-600">Price: ${item.price.toFixed(2)}</p>
-                                <div className="mt-4 flex items-center space-x-4">
-                                    {/* Decrease Quantity Button */}
-                                    <button
-                                        onClick={() =>
-                                            handleQuantityChange(item.id, item.quantity - 1)
-                                        }
-                                        className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-400"
-                                        disabled={item.quantity <= 1} // Disable if quantity is 1
-                                    >
-                                        -
-                                    </button>
+                                
+                                {/* Quantity and Remove Button Section */}
+                                <div className="mt-4 flex flex-col items-start space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:space-x-4">
+                                    {/* Quantity Controls */}
+                                    <div className="flex items-center space-x-4">
+                                        {/* Decrease Quantity or Remove Button */}
+                                        {item.quantity > 1 ? (
+                                            <button
+                                                onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                                                className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-400"
+                                            >
+                                                -
+                                            </button>
+                                        ) : (
+                                            <button
+                                                onClick={() => handleRemove(item.id)}
+                                                className="bg-gray-300 text-white px-2 py-1 rounded-lg hover:bg-red-600"
+                                            >
+                                                🗑️
+                                            </button>
+                                        )}
 
-                                    {/* Display Quantity */}
-                                    <span className="text-lg font-bold">{item.quantity}</span>
+                                        {/* Display Quantity */}
+                                        <span className="text-lg font-bold">{item.quantity}</span>
 
-                                    {/* Increase Quantity Button */}
-                                    <button
-                                        onClick={() =>
-                                            handleQuantityChange(item.id, item.quantity + 1)
-                                        }
-                                        className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-400"
-                                    >
-                                        +
-                                    </button>
+                                        {/* Increase Quantity Button */}
+                                        <button
+                                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                                            className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg hover:bg-gray-400"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
 
                                     {/* Remove Button */}
                                     <button
                                         onClick={() => handleRemove(item.id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 text-base"
                                     >
                                         Remove
                                     </button>
