@@ -1,6 +1,6 @@
-# thisNThatMixUpShop
+# ThisNThatMixUpShop
 
-Welcome to the thisNThatMixUpShop project! This is a React.js application styled with Tailwind CSS, designed to showcase a variety of products including apparel, accessories, and figures.
+Welcome to the ThisNThatMixUpShop project! This is a React.js application styled with Tailwind CSS, designed to showcase a variety of products including apparel, accessories, and figures.
 
 ## Project Structure
 
@@ -28,7 +28,7 @@ thisnthat
 │   │   ├── Figures.jsx    # Figures page
 │   │   ├── AboutUs.jsx    # About Us page
 │   │   ├── Cart.jsx       # Cart page
-│   │   ├── Checkout.jsx    # Checkout page
+│   │   ├── Checkout.jsx   # Checkout page
 │   │   └── Collections.jsx # Collections page
 │   ├── App.jsx            # Main application component
 │   ├── index.jsx          # Entry point of the React application
@@ -36,7 +36,8 @@ thisnthat
 │       └── tailwind.css   # Tailwind CSS styles
 ├── package.json           # npm configuration file
 ├── postcss.config.js      # PostCSS configuration file
-├── tailwind.config.js      # Tailwind CSS configuration file
+├── tailwind.config.js     # Tailwind CSS configuration file
+├── LICENSE                # License file for the project
 └── README.md              # Project documentation
 ```
 
@@ -78,6 +79,11 @@ To get started with the project, follow these steps:
   - `SearchBar`: Provides a search functionality for the site.
   - `SectionLinks`: Simplifies navigation between sections.
 - **Multiple Pages**: Includes pages for different product categories such as Apparel, Accessories, and Figures.
+- **Event Calendar**:
+  - Displays upcoming events with details like date and location.
+  - Allows users to click on events to view more information in a modal.
+- **Facebook Live Integration**:
+  - Embeds a Facebook Live video and chat for live product showcases.
 
 ## Contributing
 

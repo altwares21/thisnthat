@@ -538,7 +538,7 @@ const products = [
     {
         id: 47,
         name: "Mina Ashido Funko Pop",
-        price: 25.00,
+        price: 55.00,
         description: "A Funko Pop figure of Mina from My Hero Academia.",
         images: [
             require("./products/Figures/mina-funko.jpg"),

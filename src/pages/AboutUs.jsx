@@ -48,7 +48,7 @@ const AboutUs = () => {
     const adjustEndDate = (endDate) => {
         const date = new Date(endDate);
         date.setDate(date.getDate() + 1); // Add one day
-        return date.toISOString().split('T')[0]; // Return in YYYY-MM-DD format
+        return date; // Return the adjusted Date object
     };
 
     return (
@@ -169,8 +169,24 @@ const AboutUs = () => {
                         <p className="text-lg">
                             <strong>Date:</strong>{' '}
                             {selectedEvent.start
-                                ? `${selectedEvent.start} to ${selectedEvent.end || selectedEvent.start}`
-                                : selectedEvent.date}
+                                ? `${new Date(`${selectedEvent.start}T00:00:00`).toLocaleDateString('en-US', {
+                                      year: 'numeric',
+                                      month: 'long',
+                                      day: 'numeric',
+                                  })}${
+                                      selectedEvent.end
+                                          ? ` to ${new Date(`${adjustEndDate(selectedEvent.end).toISOString().split('T')[0]}T00:00:00`).toLocaleDateString('en-US', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric',
+                                            })}`
+                                          : ''
+                                  }`
+                                : new Date(`${selectedEvent.date}T00:00:00`).toLocaleDateString('en-US', {
+                                      year: 'numeric',
+                                      month: 'long',
+                                      day: 'numeric',
+                                  })}
                         </p>
                         <p className="text-lg">
                             <strong>Location:</strong> {selectedEvent.location}
