@@ -69,7 +69,7 @@ const HeaderNavbar = () => {
 
             {/* Header and Main Content */}
             <div className={`${menuOpen ? 'opacity-50 pointer-events-none' : ''}`}>
-                <header className="bg-orange-500 text-white sticky top-0 z-50">
+                <header className="bg-orange-500 text-white fixed top-0 left-0 w-full z-50">
                     <div className="container mx-auto flex items-center justify-between py-2 px-6 sm:justify-between">
                         {/* Hamburger Menu Button (Small Screens) */}
                         <button
@@ -123,16 +123,21 @@ const HeaderNavbar = () => {
                     </div>
                 </header>
 
-                {/* Search Bar for Small Screens */}
-                {showSearchBar && (
-                    <div
-                        ref={searchBarRef}
-                        className="sm:hidden bg-orange-500 py-2 px-4"
-                    >
-                        <SearchBar onSearch={handleSearchSubmit} />
-                    </div>
-                )}
+                {/* Main Content */}
+                <div className="mt-16">
+                    {/* Your main content goes here */}
+                </div>
             </div>
+
+            {/* Search Bar for Small Screens */}
+            {showSearchBar && (
+                <div
+                    ref={searchBarRef}
+                    className="sm:hidden bg-orange-500 py-2 px-4"
+                >
+                    <SearchBar onSearch={handleSearchSubmit} />
+                </div>
+            )}
 
             {/* Side Hamburger Menu (Small Screens) */}
             <div

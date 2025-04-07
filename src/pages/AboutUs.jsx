@@ -138,6 +138,26 @@ const AboutUs = () => {
                             />
                         </div>
                     </div>
+
+                    {/* Facebook Live Embed and Chat Section */}
+                    <div className="mt-12">
+                        <h2 className="text-2xl font-bold mb-4">Watch Our New Products Live</h2>
+                        <div className="flex flex-col lg:flex-row lg:space-x-8 justify-center">
+                            {/* Facebook Live Embed */}
+                            <div className="flex justify-center">
+                                <iframe
+                                    src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2F100063759631451%2Fvideos%2F1715819459028193%2F&show_text=false&width=267&t=0"
+                                    width="267"
+                                    height="476"
+                                    style={{ border: 'none', overflow: 'hidden' }}
+                                    scrolling="no"
+                                    frameBorder="0"
+                                    allowFullScreen={true}
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </>
             )}
 

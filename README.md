@@ -15,7 +15,12 @@ thisnthat
 │   ├── components         # Contains reusable components
 │   │   ├── Header.jsx     # Header component
 │   │   ├── Footer.jsx     # Footer component
-│   │   └── Navbar.jsx     # Navigation bar component
+│   │   ├── Navbar.jsx     # Navigation bar component
+│   │   ├── HeaderNavbar.jsx # Combined Header and Navbar component with side menu
+│   │   ├── CartIcon.jsx   # Cart icon component
+│   │   ├── ScrollToTop.jsx # Scroll-to-top functionality
+│   │   ├── SearchBar.jsx  # Search bar component
+│   │   └── SectionLinks.jsx # Section links for navigation
 │   ├── pages              # Contains page components
 │   │   ├── Home.jsx       # Home page
 │   │   ├── Apparel.jsx    # Apparel page
@@ -61,10 +66,18 @@ To get started with the project, follow these steps:
 
 ## Features
 
-- Responsive design using Tailwind CSS
-- Multiple pages for different product categories
-- Easy navigation with a functional Navbar
-- Header and Footer components for consistent layout
+- **Responsive Design**: Built using Tailwind CSS for a fully responsive layout.
+- **Side Hamburger Menu**:
+  - Includes a close button and a centered logo.
+  - Displays navigation links with larger, clickable text for better usability.
+  - Disables scrolling on the main page when the menu is open.
+  - Adds a darkened background overlay to highlight the menu.
+- **Reusable Components**:
+  - `CartIcon`: Displays the cart icon with item count.
+  - `ScrollToTop`: Automatically scrolls to the top of the page when navigating.
+  - `SearchBar`: Provides a search functionality for the site.
+  - `SectionLinks`: Simplifies navigation between sections.
+- **Multiple Pages**: Includes pages for different product categories such as Apparel, Accessories, and Figures.
 
 ## Contributing
 
