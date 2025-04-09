@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/thisnthat/static/css/main.3af981ee.css",
-    "main.js": "/thisnthat/static/js/main.ab7ef345.js",
+    "main.css": "/thisnthat/static/css/main.dc5c1ee8.css",
+    "main.js": "/thisnthat/static/js/main.f554c280.js",
     "static/media/logo.png": "/thisnthat/static/media/logo.65f331e78f3c13bd4900.png",
     "static/media/luffy-funko2.jpg": "/thisnthat/static/media/luffy-funko2.736d3bf78656336de3d7.jpg",
     "static/media/myLifeStory-tee.jpg": "/thisnthat/static/media/myLifeStory-tee.8e771b79abe2094441d9.jpg",
@@ -13,7 +13,6 @@
     "static/media/hxh-tee.jpg": "/thisnthat/static/media/hxh-tee.81f0257c72950991a019.jpg",
     "static/media/goku-funko2.jpg": "/thisnthat/static/media/goku-funko2.754e1e2db8ffe44f38e6.jpg",
     "static/media/kratos-dryfit.jpg": "/thisnthat/static/media/kratos-dryfit.6dda3dca4eb20a71d543.jpg",
-    "static/media/aot-tee.jpg": "/thisnthat/static/media/aot-tee.9f736379db4fe220a609.jpg",
     "static/media/ww-funko2.jpg": "/thisnthat/static/media/ww-funko2.8aff295922c08c7f6431.jpg",
     "static/media/zoro-funko3.jpg": "/thisnthat/static/media/zoro-funko3.c0203cb28aaf783e556a.jpg",
     "static/media/levi-dryfit.jpg": "/thisnthat/static/media/levi-dryfit.2e032b063fdb6353a2a2.jpg",
@@ -162,11 +161,11 @@
     "static/media/death-note-mug.jpg": "/thisnthat/static/media/death-note-mug.25f257a22e22abb0dd8a.jpg",
     "static/media/brook-tee3.jpg": "/thisnthat/static/media/brook-tee3.55f04fd70bbe7def349f.jpg",
     "index.html": "/thisnthat/index.html",
-    "main.3af981ee.css.map": "/thisnthat/static/css/main.3af981ee.css.map",
-    "main.ab7ef345.js.map": "/thisnthat/static/js/main.ab7ef345.js.map"
+    "main.dc5c1ee8.css.map": "/thisnthat/static/css/main.dc5c1ee8.css.map",
+    "main.f554c280.js.map": "/thisnthat/static/js/main.f554c280.js.map"
   },
   "entrypoints": [
-    "static/css/main.3af981ee.css",
-    "static/js/main.ab7ef345.js"
+    "static/css/main.dc5c1ee8.css",
+    "static/js/main.f554c280.js"
   ]
 }
