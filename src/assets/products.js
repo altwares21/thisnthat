@@ -18,7 +18,7 @@ const products = [
         price: 35.00,
         description: "An Attack on Titan-themed t-shirt.",
         images: [
-            require("./products/Apparel/aot-tee.jpg"),
+            "https://github.com/altwares21/thisnthat/blob/main/src/assets/products/Apparel/aot-tee.jpg?raw=true",
             require("./products/Apparel/aot-tee2.jpg")
         ],
         keywords: ["Attack on Titan", "AOT", "Eren", "Eren Yeager"],

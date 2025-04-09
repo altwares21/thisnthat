@@ -12,7 +12,7 @@ import Accessories from './pages/Accessories'; // Accessories page
 import Figures from './pages/Figures'; // Figures page
 import AboutUs from './pages/AboutUs'; // About Us page
 import Cart from './pages/Cart'; // Cart page
-import Checkout from './pages/Checkout'; // Checkout page
+import CheckoutForm from './components/CheckoutForm'; // Import CheckoutForm component
 import Collections from './pages/Collections'; // Collections page
 import Product from './pages/Product'; // Import the Product page
 import { CartProvider } from './context/CartContext'; // Import CartProvider
@@ -40,7 +40,7 @@ const App = () => {
                 <Route path="/accessories" element={<Accessories />} />
                 <Route path="/figures" element={<Figures />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/checkout" element={<CheckoutForm />} />
                 <Route path="/product/:id" element={<Product />} />
               </Routes>
             </main>
