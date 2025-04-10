@@ -1,7 +1,7 @@
 import React from 'react'; // Required for JSX syntax
 import { Provider } from 'react-redux'; // Redux Provider
 import store from './store'; // Redux store
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // For routing
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Use BrowserRouter instead of HashRouter
 import { ToastContainer } from 'react-toastify'; // Toast notifications
 import 'react-toastify/dist/ReactToastify.css'; // Toastify styles
 import HeaderNavbar from './components/HeaderNavbar'; // Header component
@@ -26,7 +26,7 @@ const App = () => {
     <Provider store={store}>
       <CartProvider>
         <DarkModeProvider> {/* Wrap the app with DarkModeProvider */}
-          <Router basename="/thisnthat">
+          <Router basename="/thisnthat"> {/* Set the basename to /thisnthat */}
             <ScrollToTop /> {/* Add ScrollToTop here */}
             <PageHelmet /> {/* Add the reusable PageHelmet component */}
             <div className="flex flex-col min-h-screen">
