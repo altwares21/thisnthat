@@ -37,7 +37,6 @@ thisnthat
 ├── package.json           # npm configuration file
 ├── postcss.config.js      # PostCSS configuration file
 ├── tailwind.config.js     # Tailwind CSS configuration file
-├── LICENSE                # License file for the project
 └── README.md              # Project documentation
 ```
 
@@ -68,6 +67,13 @@ To get started with the project, follow these steps:
 ## Features
 
 - **Responsive Design**: Built using Tailwind CSS for a fully responsive layout.
+- **Cart Persistence**:
+  - The cart state is saved to `localStorage`, ensuring that items in the cart remain even after refreshing the page.
+  - This feature enhances the user experience by preventing accidental loss of cart data.
+- **EmailJS Integration**:
+  - The checkout process uses EmailJS to send order confirmation emails.
+  - Emails include customer details, selected delivery and payment methods, and a summary of the cart items.
+  - Provides a seamless and automated way to confirm orders.
 - **Side Hamburger Menu**:
   - Includes a close button and a centered logo.
   - Displays navigation links with larger, clickable text for better usability.
@@ -88,7 +94,3 @@ To get started with the project, follow these steps:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.

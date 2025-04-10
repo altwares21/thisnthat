@@ -19,12 +19,16 @@ const Apparel = () => {
     const dryFitProducts = products.filter((product) => product.category === 'Dry Fit');
 
     return (
-        <div className="w-full max-w-4xl px-4 mt-12 mx-auto">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
             {/* Tees Section */}
-            <ProductGrid products={teesProducts} isLoading={isLoading} title="Tees" />
+            <div className="w-full max-w-4xl px-4 mt-12">
+                <ProductGrid products={teesProducts} isLoading={isLoading} title="Tees" />
+            </div>
 
             {/* Dry Fit Section */}
-            <ProductGrid products={dryFitProducts} isLoading={isLoading} title="Dry Fit" />
+            <div className="w-full max-w-4xl px-4 mt-12">
+                <ProductGrid products={dryFitProducts} isLoading={isLoading} title="Dry Fit" />
+            </div>
         </div>
     );
 };

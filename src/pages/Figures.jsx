@@ -17,7 +17,11 @@ const Figures = () => {
     // Filter products for "Figures" category
     const figureProducts = products.filter((product) => product.category === 'Figures');
 
-    return <ProductGrid products={figureProducts} isLoading={isLoading} title="Figures" />;
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
+            <ProductGrid products={figureProducts} isLoading={isLoading} title="Figures" />
+        </div>
+    );
 };
 
 export default Figures;
