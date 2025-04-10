@@ -2,12 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../slices/cartSlice";
 import SectionLinks from "../components/SectionLinks"; // Import the reusable SectionLinks component
-import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate from react-router-dom
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart); // Access the cart state
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // Initialize navigate
 
     const handleRemove = (id) => {
         dispatch(removeFromCart({ id })); // Dispatch the removeFromCart action
@@ -129,16 +128,6 @@ const Cart = () => {
                     <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">Cart Total</h2>
                     <p className="text-lg font-bold text-gray-800 dark:text-gray-200">${cartTotal.toFixed(2)}</p>
                 </div>
-            </div>
-
-            {/* Checkout Button */}
-            <div className="text-center mt-8">
-                <button
-                    onClick={() => navigate("/checkout")} // Navigate to the checkout page
-                    className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600"
-                >
-                    Proceed to Checkout
-                </button>
             </div>
         </div>
     );

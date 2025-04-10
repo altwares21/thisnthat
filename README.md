@@ -89,7 +89,7 @@ To get started with the project, follow these steps:
   - Displays upcoming events with details like date and location.
   - Allows users to click on events to view more information in a modal.
 - **Facebook Live Integration**:
-  - Embeds a Facebook Live video for live product showcases.
+  - Embeds a Facebook Live video and chat for live product showcases.
 
 ## Contributing
 
