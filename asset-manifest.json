@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/thisnthat/static/css/main.1e091e54.css",
-    "main.js": "/thisnthat/static/js/main.fdb64e00.js",
+    "main.js": "/thisnthat/static/js/main.b7b02141.js",
     "static/media/logo.png": "/thisnthat/static/media/logo.65f331e78f3c13bd4900.png",
     "static/media/sprites.png": "/thisnthat/static/media/sprites.64a232bca1edbf2e0098.png",
     "static/media/hxh-tee.jpg": "/thisnthat/static/media/hxh-tee.81f0257c72950991a019.jpg",
@@ -9,10 +9,10 @@
     "static/media/goku-keychain.jpg": "/thisnthat/static/media/goku-keychain.8752aa8b2f99d2995717.jpg",
     "index.html": "/thisnthat/index.html",
     "main.1e091e54.css.map": "/thisnthat/static/css/main.1e091e54.css.map",
-    "main.fdb64e00.js.map": "/thisnthat/static/js/main.fdb64e00.js.map"
+    "main.b7b02141.js.map": "/thisnthat/static/js/main.b7b02141.js.map"
   },
   "entrypoints": [
     "static/css/main.1e091e54.css",
-    "static/js/main.fdb64e00.js"
+    "static/js/main.b7b02141.js"
   ]
 }
