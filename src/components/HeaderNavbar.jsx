@@ -5,7 +5,6 @@ import { FaSearch } from 'react-icons/fa';
 import SearchBar from './SearchBar';
 import CartIcon from './CartIcon'; // Import the new CartIcon component
 import sprites from '../assets/images/sprites.png'; // Import the sprites image
-import DarkModeToggle from "./DarkModeToggle"; // Import the toggle component
 
 const HeaderNavbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -70,7 +69,7 @@ const HeaderNavbar = () => {
 
             {/* Header and Main Content */}
             <div className={`${menuOpen ? 'opacity-50 pointer-events-none' : ''}`}>
-                <header className="bg-orange-500 text-white fixed top-0 left-0 w-full z-50 dark:bg-gray-900 dark:text-gray-200">
+                <header className="bg-orange-500 text-white fixed top-0 left-0 w-full z-50">
                     <div className="container mx-auto flex items-center justify-between py-2 px-6 sm:justify-between">
                         {/* Hamburger Menu Button (Small Screens) */}
                         <button
@@ -117,9 +116,8 @@ const HeaderNavbar = () => {
                             </nav>
 
                             {/* Search Bar on the Right (Large Screens) */}
-                            <div className="flex items-center space-x-4">
+                            <div className="flex items-center">
                                 <SearchBar />
-                                <DarkModeToggle />
                             </div>
                         </div>
                     </div>
@@ -145,12 +143,12 @@ const HeaderNavbar = () => {
             <div
                 ref={menuRef}
                 className={`fixed top-0 left-0 h-full w-64 bg-orange-500 text-white z-50 transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'
-                    } transition-transform duration-300 dark:bg-gray-900 dark:text-gray-200`}
+                    } transition-transform duration-300`}
             >
                 {/* Close Button and Logo */}
                 <div className="flex items-center justify-between px-4 py-4 relative">
                     <button
-                        className="text-white text-2xl focus:outline-none dark:text-gray-200"
+                        className="text-white text-2xl focus:outline-none"
                         onClick={() => setMenuOpen(false)}
                     >
                         ✖
@@ -166,45 +164,40 @@ const HeaderNavbar = () => {
                 <nav className="flex flex-col items-center space-y-6 mt-12 px-4">
                     <Link
                         to="/"
-                        className="text-lg font-bold hover:underline dark:hover:text-gray-400"
+                        className="text-lg font-bold hover:underline"
                         onClick={() => setMenuOpen(false)}
                     >
                         Home
                     </Link>
                     <Link
                         to="/apparel"
-                        className="text-lg font-bold hover:underline dark:hover:text-gray-400"
+                        className="text-lg font-bold hover:underline"
                         onClick={() => setMenuOpen(false)}
                     >
                         Apparel
                     </Link>
                     <Link
                         to="/accessories"
-                        className="text-lg font-bold hover:underline dark:hover:text-gray-400"
+                        className="text-lg font-bold hover:underline"
                         onClick={() => setMenuOpen(false)}
                     >
                         Accessories
                     </Link>
                     <Link
                         to="/figures"
-                        className="text-lg font-bold hover:underline dark:hover:text-gray-400"
+                        className="text-lg font-bold hover:underline"
                         onClick={() => setMenuOpen(false)}
                     >
                         Figures
                     </Link>
                     <Link
                         to="/about-us"
-                        className="text-lg font-bold hover:underline dark:hover:text-gray-400"
+                        className="text-lg font-bold hover:underline"
                         onClick={() => setMenuOpen(false)}
                     >
                         About Us
                     </Link>
                 </nav>
-
-                {/* Dark Mode Toggle */}
-                <div className="flex justify-center mt-8">
-                    <DarkModeToggle />
-                </div>
 
                 {/* Sprites Image */}
                 <div className="flex justify-center mt-8">

@@ -31,7 +31,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             {/* Section Links */}
             {isLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl px-4 mt-8">
@@ -40,7 +40,7 @@ const Home = () => {
                         .map((_, index) => (
                             <div
                                 key={index}
-                                className="w-40 h-40 bg-gray-300 animate-pulse rounded-lg mx-auto dark:bg-gray-600"
+                                className="w-40 h-40 bg-gray-300 animate-pulse rounded-lg mx-auto"
                             ></div>
                         ))}
                 </div>
@@ -50,9 +50,9 @@ const Home = () => {
 
             {/* Apparel Product Links */}
             <div className="w-full max-w-4xl px-4 mt-12">
-                <h2 className="text-2xl font-bold mb-4 text-center text-black dark:text-gray-200">
+                <h2 className="text-2xl font-bold mb-4 text-center text-black-600">
                     {isLoading ? (
-                        <div className="w-40 h-8 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
+                        <div className="w-40 h-8 bg-gray-300 animate-pulse mx-auto rounded"></div>
                     ) : (
                         "Apparel"
                     )}
@@ -63,10 +63,10 @@ const Home = () => {
                               .fill(0)
                               .map((_, index) => (
                                   <div key={index} className="relative group">
-                                      <div className="w-64 h-64 bg-gray-300 animate-pulse rounded-lg mx-auto dark:bg-gray-600"></div>
+                                      <div className="w-64 h-64 bg-gray-300 animate-pulse rounded-lg mx-auto"></div>
                                       <div className="text-center mt-2">
-                                          <div className="w-32 h-4 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
-                                          <div className="w-20 h-4 bg-gray-300 animate-pulse mx-auto rounded mt-2 dark:bg-gray-600"></div>
+                                          <div className="w-32 h-4 bg-gray-300 animate-pulse mx-auto rounded"></div>
+                                          <div className="w-20 h-4 bg-gray-300 animate-pulse mx-auto rounded mt-2"></div>
                                       </div>
                                   </div>
                               ))
@@ -83,7 +83,7 @@ const Home = () => {
                                   </Link>
                                   <div className="text-center mt-2">
                                       <span className="text-lg font-bold">{product.name}</span>
-                                      <p className="text-gray-600 dark:text-gray-400">
+                                      <p className="text-gray-600">
                                           ${product.price.toFixed(2)}
                                       </p>
                                   </div>
@@ -94,9 +94,9 @@ const Home = () => {
 
             {/* Accessories Product Links */}
             <div className="w-full max-w-4xl px-4 mt-12">
-                <h2 className="text-2xl font-bold mb-4 text-center text-black dark:text-gray-200">
+                <h2 className="text-2xl font-bold mb-4 text-center text-black-600">
                     {isLoading ? (
-                        <div className="w-40 h-8 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
+                        <div className="w-40 h-8 bg-gray-300 animate-pulse mx-auto rounded"></div>
                     ) : (
                         "Accessories"
                     )}
@@ -107,10 +107,10 @@ const Home = () => {
                               .fill(0)
                               .map((_, index) => (
                                   <div key={index} className="relative group">
-                                      <div className="w-64 h-64 bg-gray-300 animate-pulse rounded-lg mx-auto dark:bg-gray-600"></div>
+                                      <div className="w-64 h-64 bg-gray-300 animate-pulse rounded-lg mx-auto"></div>
                                       <div className="text-center mt-2">
-                                          <div className="w-32 h-4 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
-                                          <div className="w-20 h-4 bg-gray-300 animate-pulse mx-auto rounded mt-2 dark:bg-gray-600"></div>
+                                          <div className="w-32 h-4 bg-gray-300 animate-pulse mx-auto rounded"></div>
+                                          <div className="w-20 h-4 bg-gray-300 animate-pulse mx-auto rounded mt-2"></div>
                                       </div>
                                   </div>
                               ))
@@ -127,7 +127,7 @@ const Home = () => {
                                   </Link>
                                   <div className="text-center mt-2">
                                       <span className="text-lg font-bold">{product.name}</span>
-                                      <p className="text-gray-600 dark:text-gray-400">
+                                      <p className="text-gray-600">
                                           ${product.price.toFixed(2)}
                                       </p>
                                   </div>
@@ -138,9 +138,9 @@ const Home = () => {
 
             {/* Figures Product Links */}
             <div className="w-full max-w-4xl px-4 mt-12">
-                <h2 className="text-2xl font-bold mb-4 text-center text-black dark:text-gray-200">
+                <h2 className="text-2xl font-bold mb-4 text-center text-black-600">
                     {isLoading ? (
-                        <div className="w-40 h-8 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
+                        <div className="w-40 h-8 bg-gray-300 animate-pulse mx-auto rounded"></div>
                     ) : (
                         "Figures"
                     )}
@@ -151,10 +151,10 @@ const Home = () => {
                               .fill(0)
                               .map((_, index) => (
                                   <div key={index} className="relative group">
-                                      <div className="w-64 h-64 bg-gray-300 animate-pulse rounded-lg mx-auto dark:bg-gray-600"></div>
+                                      <div className="w-64 h-64 bg-gray-300 animate-pulse rounded-lg mx-auto"></div>
                                       <div className="text-center mt-2">
-                                          <div className="w-32 h-4 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
-                                          <div className="w-20 h-4 bg-gray-300 animate-pulse mx-auto rounded mt-2 dark:bg-gray-600"></div>
+                                          <div className="w-32 h-4 bg-gray-300 animate-pulse mx-auto rounded"></div>
+                                          <div className="w-20 h-4 bg-gray-300 animate-pulse mx-auto rounded mt-2"></div>
                                       </div>
                                   </div>
                               ))
@@ -171,7 +171,7 @@ const Home = () => {
                                   </Link>
                                   <div className="text-center mt-2">
                                       <span className="text-lg font-bold">{product.name}</span>
-                                      <p className="text-gray-600 dark:text-gray-400">
+                                      <p className="text-gray-600">
                                           ${product.price.toFixed(2)}
                                       </p>
                                   </div>

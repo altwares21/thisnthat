@@ -52,44 +52,59 @@ const AboutUs = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200 px-4 py-8 space-y-12">
+        <div className="container mx-auto px-4 py-8 text-center">
             {isLoading ? (
                 // Skeleton Loader
                 <div>
                     {/* Skeleton for About Us Section */}
                     <div className="mb-8">
-                        <div className="h-8 bg-gray-300 rounded w-1/3 mx-auto animate-pulse mb-4 dark:bg-gray-600"></div>
-                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto animate-pulse mb-2 dark:bg-gray-600"></div>
-                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto animate-pulse mb-2 dark:bg-gray-600"></div>
-                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto animate-pulse dark:bg-gray-600"></div>
+                        <div className="h-8 bg-gray-300 rounded w-1/3 mx-auto animate-pulse mb-4"></div>
+                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto animate-pulse mb-2"></div>
+                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto animate-pulse mb-2"></div>
+                        <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto animate-pulse"></div>
+                    </div>
+
+                    {/* Skeleton for Social Media Links */}
+                    <div className="mb-8">
+                        <div className="h-8 bg-gray-300 rounded w-1/4 mx-auto animate-pulse mb-4"></div>
+                        <div className="flex justify-center space-x-6">
+                            <div className="h-12 w-12 bg-gray-300 rounded-full animate-pulse"></div>
+                            <div className="h-12 w-12 bg-gray-300 rounded-full animate-pulse"></div>
+                        </div>
+                    </div>
+
+                    {/* Skeleton for Calendar */}
+                    <div>
+                        <div className="h-8 bg-gray-300 rounded w-1/3 mx-auto animate-pulse mb-4"></div>
+                        <div className="h-96 bg-gray-300 rounded-lg animate-pulse"></div>
                     </div>
                 </div>
             ) : (
                 // Actual Content
                 <>
                     {/* About Us Section */}
-                    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 max-w-3xl w-full">
-                        <h1 className="text-3xl font-bold mb-4 text-center">About Us</h1>
-                        <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <div className="about-us-section">
+                        <h1 className="text-3xl font-bold mb-4">About Us</h1>
+                        <p className="text-lg">
                             Welcome to thisNThatMixUpShop! We are dedicated to providing you with a unique shopping experience, offering a diverse range of products that cater to all your needs. Our mission is to bring together a mix of quality apparel, accessories, and collectibles that reflect your individuality.
                         </p>
-                        <p className="text-lg text-gray-700 dark:text-gray-300 mt-4">
+                        <p className="text-lg mt-4">
                             At thisNThatMixUpShop, our carefully curated collections are designed to inspire and empower you to express your personal style.
                         </p>
-                        <p className="text-lg text-gray-700 dark:text-gray-300 mt-4">
+                        <p className="text-lg mt-4">
                             Thank you for choosing us as your go-to shop for all things anime and unique. We look forward to serving you!
                         </p>
                     </div>
 
                     {/* Social Media Links */}
                     <div className="mt-8">
-                        <h2 className="text-2xl font-bold mb-4 text-center">Follow Us</h2>
+                        <h2 className="text-2xl font-bold mb-4">Follow Us</h2>
                         <div className="flex justify-center space-x-6">
                             <a
                                 href="https://www.instagram.com/thisnthatmixupshop/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 hover:text-orange-500 text-3xl dark:text-gray-400"
+                                className="text-gray-600 hover:text-orange-500 text-3xl"
                             >
                                 <FaInstagram />
                             </a>
@@ -97,7 +112,7 @@ const AboutUs = () => {
                                 href="https://www.facebook.com/profile.php?id=100063759631451"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 hover:text-orange-500 text-3xl dark:text-gray-400"
+                                className="text-gray-600 hover:text-orange-500 text-3xl"
                             >
                                 <FaFacebook />
                             </a>
@@ -106,9 +121,9 @@ const AboutUs = () => {
 
                     {/* FullCalendar Section */}
                     <div className="mt-12">
-                        <h2 className="text-2xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200">Upcoming Events</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4 text-center">Click on an event to learn more!</p>
-                        <div className="w-full md:w-3/4 mx-auto aspect-w-16 aspect-h-9 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                        <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
+                        <p className="text-gray-600 mb-4">Click on an event to learn more!</p>
+                        <div className="w-full max-w-2xl mx-auto aspect-square">
                             <FullCalendar
                                 plugins={[dayGridPlugin]}
                                 initialView="dayGridMonth"
@@ -118,27 +133,29 @@ const AboutUs = () => {
                                     end: event.end ? adjustEndDate(event.end) : undefined,
                                     extendedProps: { location: event.location },
                                 }))}
-                                height="auto"
+                                height="100%"
                                 eventClick={handleEventClick}
-                                dayHeaderClassNames="text-gray-700 dark:text-gray-200 font-bold" // Apply dark mode styling to day headers
                             />
                         </div>
                     </div>
 
-                    {/* Facebook Live Embed */}
+                    {/* Facebook Live Embed and Chat Section */}
                     <div className="mt-12">
-                        <h2 className="text-2xl font-bold mb-4 text-center">Watch Our New Products Live</h2>
-                        <div className="flex justify-center">
-                            <iframe
-                                src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2F100063759631451%2Fvideos%2F1715819459028193%2F&show_text=false&width=267&t=0"
-                                width="267"
-                                height="476"
-                                style={{ border: 'none', overflow: 'hidden' }}
-                                scrolling="no"
-                                frameBorder="0"
-                                allowFullScreen={true}
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                            ></iframe>
+                        <h2 className="text-2xl font-bold mb-4">Watch Our New Products Live</h2>
+                        <div className="flex flex-col lg:flex-row lg:space-x-8 justify-center">
+                            {/* Facebook Live Embed */}
+                            <div className="flex justify-center">
+                                <iframe
+                                    src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2F100063759631451%2Fvideos%2F1715819459028193%2F&show_text=false&width=267&t=0"
+                                    width="267"
+                                    height="476"
+                                    style={{ border: 'none', overflow: 'hidden' }}
+                                    scrolling="no"
+                                    frameBorder="0"
+                                    allowFullScreen={true}
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                ></iframe>
+                            </div>
                         </div>
                     </div>
                 </>
@@ -147,9 +164,9 @@ const AboutUs = () => {
             {/* Modal */}
             {isModalOpen && selectedEvent && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-11/12 max-w-md">
-                        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">{selectedEvent.title}</h2>
-                        <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <div className="bg-white rounded-lg p-6 w-11/12 max-w-md">
+                        <h2 className="text-2xl font-bold mb-4">{selectedEvent.title}</h2>
+                        <p className="text-lg">
                             <strong>Date:</strong>{' '}
                             {selectedEvent.start
                                 ? `${new Date(`${selectedEvent.start}T00:00:00`).toLocaleDateString('en-US', {
@@ -171,7 +188,7 @@ const AboutUs = () => {
                                       day: 'numeric',
                                   })}
                         </p>
-                        <p className="text-lg text-gray-700 dark:text-gray-300">
+                        <p className="text-lg">
                             <strong>Location:</strong> {selectedEvent.location}
                         </p>
                         <button

@@ -2,27 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
-import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch from react-redux
+import products from '../assets/products'; // Import the products data
+import { useDispatch } from 'react-redux'; // Import useDispatch from react-redux
 import { addToCart } from '../slices/cartSlice'; // Import the addToCart action
 import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Product = () => {
     const { id } = useParams(); // Get the product ID from the URL
-    console.log("Product ID from URL:", id); // Debugging
-
     const dispatch = useDispatch(); // Initialize the Redux dispatch function
-    const products = useSelector((state) => state.products); // Access products from Redux
-    console.log("Products state:", products); // Debugging
-
     const [isLoading, setIsLoading] = useState(true); // Loading state
     const [quantity, setQuantity] = useState(1); // State for quantity
     const [selectedSize, setSelectedSize] = useState(''); // State for selected size
     const [shakeSize, setShakeSize] = useState(false); // State for shake animation
     const sizeDropdownRef = React.useRef(null); // Ref for size dropdown
 
-    const product = products.find((product) => product.id === parseInt(id, 10)); // Find the product by ID
-    console.log("Product found:", product); // Debugging
+    const product = products.find((product) => product.id === parseInt(id)); // Find the product by ID
 
     useEffect(() => {
         // Random loading messages
@@ -100,9 +95,9 @@ const Product = () => {
             />
 
             {/* Product Name */}
-            <h1 className="text-3xl font-bold mb-4 text-center text-gray-800 dark:text-gray-200">
+            <h1 className="text-3xl font-bold mb-4 text-center">
                 {isLoading ? (
-                    <div className="w-48 h-8 bg-gray-300 animate-pulse mx-auto rounded dark:bg-gray-600"></div>
+                    <div className="w-48 h-8 bg-gray-300 animate-pulse mx-auto rounded"></div>
                 ) : (
                     product.name
                 )}
@@ -147,18 +142,18 @@ const Product = () => {
 
                 <div className="md:ml-8 mt-4 md:mt-0">
                     {/* Product Description */}
-                    <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
+                    <p className="text-lg text-gray-700 mb-4">
                         {isLoading ? (
-                            <div className="w-full h-6 bg-gray-300 animate-pulse rounded dark:bg-gray-600"></div>
+                            <div className="w-full h-6 bg-gray-300 animate-pulse rounded"></div>
                         ) : (
                             product.description
                         )}
                     </p>
 
                     {/* Product Price */}
-                    <p className="text-xl font-bold text-orange-500 dark:text-orange-400 mb-4">
+                    <p className="text-xl font-bold text-orange-500 mb-4">
                         {isLoading ? (
-                            <div className="w-24 h-6 bg-gray-300 animate-pulse rounded dark:bg-gray-600"></div>
+                            <div className="w-24 h-6 bg-gray-300 animate-pulse rounded"></div>
                         ) : (
                             `$${product.price.toFixed(2)}`
                         )}
@@ -167,28 +162,28 @@ const Product = () => {
                     {/* Sizes Dropdown */}
                     {availableSizes.length > 0 && (
                         <div className="mb-4">
-                            <label htmlFor="size" className="block text-gray-700 dark:text-gray-300 font-bold mb-2">
+                            <label htmlFor="size" className="block text-gray-700 font-bold mb-2">
                                 {isLoading ? (
-                                    <div className="w-32 h-4 bg-gray-300 animate-pulse rounded dark:bg-gray-600"></div>
+                                    <div className="w-32 h-4 bg-gray-300 animate-pulse rounded"></div>
                                 ) : (
                                     'Select Size:'
                                 )}
                             </label>
                             {isLoading ? (
-                                <div className="w-full h-10 bg-gray-300 animate-pulse rounded dark:bg-gray-600"></div>
+                                <div className="w-full h-10 bg-gray-300 animate-pulse rounded"></div>
                             ) : (
                                 <select
                                     id="size"
                                     value={selectedSize}
                                     onChange={(e) => setSelectedSize(e.target.value)}
                                     ref={sizeDropdownRef}
-                                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 ${
+                                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 ${
                                         shakeSize ? 'animate-shake' : ''
                                     }`}
                                 >
-                                    <option value="" className="dark:bg-gray-800 dark:text-gray-300">Select a size</option>
+                                    <option value="">Select a size</option>
                                     {availableSizes.map((size) => (
-                                        <option key={size} value={size} className="dark:bg-gray-800 dark:text-gray-300">
+                                        <option key={size} value={size}>
                                             {size}
                                         </option>
                                     ))}
@@ -200,20 +195,20 @@ const Product = () => {
                     {/* Quantity Dropdown */}
                     <div className="flex items-center mb-4">
                         {isLoading ? (
-                            <div className="w-full h-10 bg-gray-300 animate-pulse rounded dark:bg-gray-600"></div>
+                            <div className="w-full h-10 bg-gray-300 animate-pulse rounded"></div>
                         ) : (
                             <div className="w-full">
-                                <label htmlFor="quantity" className="block text-gray-700 dark:text-gray-300 font-bold mb-2">
+                                <label htmlFor="quantity" className="block text-gray-700 font-bold mb-2">
                                     Quantity:
                                 </label>
                                 <select
                                     id="quantity"
                                     value={quantity}
                                     onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600"
+                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
                                 >
                                     {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-                                        <option key={num} value={num} className="dark:bg-gray-800 dark:text-gray-300">
+                                        <option key={num} value={num}>
                                             {num}
                                         </option>
                                     ))}

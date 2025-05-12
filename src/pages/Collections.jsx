@@ -27,14 +27,14 @@ const Collections = () => {
     );
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
+        <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6 text-center">
                 Search Results for "{searchQuery}"
             </h1>
 
             {filteredProducts.length === 0 && !isLoading ? (
                 <div className="text-center">
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                    <p className="text-lg text-gray-600 mb-4">
                         No results found for "{searchQuery}". Please try a different search term or explore our sections below:
                     </p>
                     <SectionLinks /> {/* Use the reusable SectionLinks component */}

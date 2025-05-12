@@ -20,21 +20,15 @@ const Accessories = () => {
     const mugsProducts = products.filter((product) => product.category === 'Mugs');
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
+        <div className="w-full max-w-4xl px-4 mt-12 mx-auto">
             {/* Necklaces Section */}
-            <div className="w-full max-w-4xl px-4 mt-12">
-                <ProductGrid products={necklacesProducts} isLoading={isLoading} title="Necklaces" />
-            </div>
+            <ProductGrid products={necklacesProducts} isLoading={isLoading} title="Necklaces" />
 
             {/* Keychains Section */}
-            <div className="w-full max-w-4xl px-4 mt-12">
-                <ProductGrid products={keychainsProducts} isLoading={isLoading} title="Keychains" />
-            </div>
+            <ProductGrid products={keychainsProducts} isLoading={isLoading} title="Keychains" />
 
             {/* Mugs Section */}
-            <div className="w-full max-w-4xl px-4 mt-12">
-                <ProductGrid products={mugsProducts} isLoading={isLoading} title="Mugs" />
-            </div>
+            <ProductGrid products={mugsProducts} isLoading={isLoading} title="Mugs" />
         </div>
     );
 };

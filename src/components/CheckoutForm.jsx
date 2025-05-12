@@ -109,10 +109,10 @@ const CheckoutForm = () => {
 
             // Send the email using EmailJS
             await emailjs.send(
-                "service_togvunx", // Your EmailJS Service ID
-                "template_c5hauyh", // Your EmailJS Template ID
+                "service_togvunx", // EmailJS Service ID
+                "template_c5hauyh", // EmailJS Template ID
                 templateParams,
-                "MHp5LP3l7tD1ykq4S" // Your EmailJS Public Key
+                "MHp5LP3l7tD1ykq4S" // EmailJS Public Key
             );
 
             // Show success notification

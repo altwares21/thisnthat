@@ -51,9 +51,7 @@ const ProductGrid = ({ products, isLoading, title }) => {
                               </Link>
                               <div className="text-center mt-2">
                                   <span className="text-lg font-bold">{product.name}</span>
-                                  <p className="text-gray-400 dark:text-gray-400">
-                                      ${product.price.toFixed(2)}
-                                  </p>
+                                  <p className="text-gray-600">${product.price.toFixed(2)}</p>
                               </div>
                           </div>
                       ))}
